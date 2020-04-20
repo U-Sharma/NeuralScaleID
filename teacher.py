@@ -191,7 +191,7 @@ class Teacher: #even if use_database = True, still supply W,b (for saving parent
         y = np.matmul(y_int,Wcoef[i])+bcoef[i]
         y_int = np.maximum(y,0)
         if relu: y_output = y_int
-        else: y_output = y #NOTE: the output is taken pre relu because y_int (and not y) the output of relu.
+        else: y_output = y 
     return y_output  
 
   def predict_layers(self,x_input,layer=None,relu=False):

@@ -7,10 +7,7 @@ import matplotlib.pyplot as plt
 import random
 import os
 import csv
-import multiprocessing
 import shutil
-import argparse
-import tables
 import pickle
 tf.compat.v1.disable_eager_execution()
 
