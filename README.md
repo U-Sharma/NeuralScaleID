@@ -60,3 +60,13 @@ saves the model
 #### Arguments
 * **name:** String. The name under which you want to save the model
 * **location** String. The directory in which you want to save your model.
+
+## Other methods in NeuralNet_Utkarsh.py
+### load_model
+```python
+load_model(name,folder='.')
+```
+loads the model saved via ```save_model``` in ```Model``` class
+### Arguments
+* **name:** String. The name of the saved model
+* **folder:** String. The directory containing the model
