@@ -111,6 +111,3 @@ l = pool.map(run,pool_list)
 pool.close()
 
 
-
-
-#np.savetxt(fol+'/N',l)

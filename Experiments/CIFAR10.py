@@ -23,12 +23,6 @@ tf.compat.v1.disable_eager_execution()
 # Normalize pixel values to be between 0 and 1
 train_images, test_images = train_images / 255.0, test_images / 255.0
 
-'''
-(train_images, train_labels), (test_images, test_labels) = datasets.fashion_mnist.load_data()
-train_images, test_images = train_images / 255.0, test_images / 255.0
-train_images = np.expand_dims(train_images,axis=3)
-test_images = np.expand_dims(test_images,axis=3)
-'''
 
 def run(l,epochs=50):
     [n,i] = l
@@ -111,6 +105,3 @@ l = pool.map(run,pool_list)
 pool.close()
 
 
-
-
-#np.savetxt(fol+'/N',l)
