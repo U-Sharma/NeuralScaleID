@@ -72,3 +72,8 @@ loads the model saved via ```save_model``` in ```Model``` class
 * **folder:** String. The directory containing the model
 
 ## Teacher class (teacher.py)
+you can instantiate a teacher via:
+```python
+import teacher
+t = teacher.Teacher(architecture=[4,256,256,8],scale=[1,1,0,0])
+```
