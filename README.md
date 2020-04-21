@@ -1,5 +1,5 @@
 # NeuralScaleID
-## NeuralNet_Utkarsh.py, class Model
+## Model class (NeuralNet_Utkarsh.py)
 you can instantiate a model via:
 ```python
 import NeuralNet_Utkarsh as NN
