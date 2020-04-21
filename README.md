@@ -95,9 +95,10 @@ returns the predicted value for input ```x_input```
 * **x_input:** input, numpy array of shape ```[batch size,input dimension]```. The entire input array is evaluated as one batch. Here ```input dimension``` is the first element of the global variable ```architecture```
 
 ```python
-save_weights(folder,W,b,scale=None,arc=None,fname=None)
+save_weights(folder,W=None,b=None)
 ```
 saves ```W``` and ```b``` (weights and biases) as csv files.
 #### Arguments
 * **folder:** directory to save weights and biases
-* 
+* **W:** Weights to be saved (list of numpy arrays). If ```None```, defaults to global variable ```W```
+* **b:** Biases to be saved (list of numpy arrays). If ```None```, defaults to global variable ```b```
