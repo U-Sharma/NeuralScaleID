@@ -77,3 +77,20 @@ you can instantiate a teacher via:
 import teacher
 t = teacher.Teacher(architecture=[4,256,256,8],scale=[1,1,0,0])
 ```
+## Methods
+### generate_input
+```python
+generate_input(batch_size=1)
+```
+returns a randomly generated input
+#### Arguments
+* **batch_size:** integer, returns numpy array of shape ```[batch size,input dimension] ```. Here ```input dimension``` is the first element of the global variable ```architecture```
+
+### predict
+```python
+predict(x_input)
+```
+returns the predicted value for input ```x_input```
+#### Arguments
+* **x_input:** input, numpy array of shape ```[batch size,input dimension]```. The entire input array is evaluated as one batch. Here ```input dimension``` is the first element of the global variable ```architecture```
+
