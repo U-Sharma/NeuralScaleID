@@ -51,3 +51,12 @@ evaluates loss given input ```x``` and output ```y```
 get_weights()
 ```
 returns ```W``` and ```b``` (weights and biases) as lists of numpy arrays
+
+### save_model
+```python
+save_model(name,location='.')
+```
+saves the model
+#### Arguments
+* **name:** String. The name under which you want to save the model
+* **location** String. The directory in which you want to save your model.
