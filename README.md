@@ -25,3 +25,11 @@ y_train = t.predict(x_train)
 
 history = model.train(x_train,y_train)
 ```
+
+We can evaluate the loss on the trained model
+```python
+x_test = t.generate_input(batch_size=100)
+y_test = t.predict(x_test)
+
+test_loss = model.evaluate(x_test,y_test)
+```
