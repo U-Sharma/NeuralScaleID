@@ -1,6 +1,7 @@
 """
-This file loads data from a teacher database folder 'teac600dataL2_20amb'. The teacher used to generate the database has
+This file loads data from a teacher database folder 'teac600dataL2_20amb'. The database contains files data2.h5,data3.h5 etc generated from teacher with 2,3 etc features respectively. The teacher used to generate the database has
 architecture [20,600,600,1]. The database was generated with softmax=False and reduce=1/20, i.e. 1.6*10**8 datapoints (refer to example.ipynb).
+t = teacher.Teacher()
 
 Make a 'data' directory for the data to be saved.
 

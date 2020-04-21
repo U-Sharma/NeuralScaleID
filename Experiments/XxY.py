@@ -1,14 +1,11 @@
 """
-This file loads data from a teacher database folder 'teac600dataL2_20amb'. The teacher used to generate the database has
-architecture [20,600,600,1]. The database was generated with softmax=False and reduce=1/20, i.e. 1.6*10**8 datapoints (refer to example.ipynb).
+This file loads data from a teacher database folders 'database_X_3','database_Y_3','database_Z_3', each of which contain a file named data3.h5. These correspond to three randomly initialized (but otherwise identical) teachers ('X','Y' and 'Z') with 3 features. The teachers have architecture [9,600,600,1]. The first, middle and last third of the inputs were kept "un-hidden" (i.e. in the 'scale' of the teacher, other elements were set to zero) for teachers X, Y and Z respectively. The database was generated with softmax=False and reduce=1/20, i.e. 1.6*10**8 datapoints (refer to example.ipynb).
 
 Make a 'data' directory for the data to be saved.
 
-Adjust the number of multiprocessing threads according to the capacity of the machine. To run without multiprocessing, run method main_f  rather than main_f_multiP (uncomment main_f, comment out main_f_multiP). main_f takes argument p, which is a tuple (n,r), where n is the width of hidden layers in student (architecture=[20,n,n,1]) and r is the run (Integer. Useful when doing multiple runs. Can be set to any arbitrary positive integer if doing only one run)
+Adjust the number of multiprocessing threads according to the capacity of the machine. To run without multiprocessing, run method main_f  rather than main_f_multiP (uncomment main_f, comment out main_f_multiP). main_f takes argument p, which is a tuple (n,r), where n is the width of hidden layers in student (architecture=[9,n,n,1]) and r is the run (Integer. Useful when doing multiple runs. Can be set to any arbitrary positive integer if doing only one run)
 
-This file takes number of features as input from the command line e.g. python3 L2.py --f=12. In this example the code would load file data12.h5 from folder 'teac600dataL2_20amb'. 
-
-In the above example, a folder 'features12' would be created in 'data', with subfolders 'losses' and 'models'. Trained models are saved in 'models' as model{n}_{r}, where n is the hidden layer width and r is the index of the run, as discussed above. Similarly loss{n}_{r}.pkl files are saved in 'losses'
+This code creates a folder 'features3plus3plus3' in 'data', with subfolders 'losses' and 'models'. Trained models are saved in 'models' as model{n}_{r}, where n is the hidden layer width and r is the index of the run, as discussed above. Similarly loss{n}_{r}.pkl files are saved in 'losses'
 
 """
 
@@ -22,10 +19,8 @@ import NeuralNet as student
 import argparse
 import multiprocessing
 
-parser = argparse.ArgumentParser(description='example: --f=15 for 15 features')
-parser.add_argument("--f", default='3', type=int, help="enter --f=num_fea (integer)")
-args = parser.parse_args()
-f = args.f
+
+f = 3 #variable f is used just to keep notation/print output same as other files.
 
 batch_size=400
 train_steps = 400*1000
@@ -125,12 +120,3 @@ for run in range(5):
     
     
 #main_f((12,0))
-
-"""
-parser = argparse.ArgumentParser(description='p = (n,r)')
-parser.add_argument("--p", default='(2,1)', help="enter tuple (n,r)")
-args = parser.parse_args()
-p = eval(args.p)
-
-main_f(p)
-"""
