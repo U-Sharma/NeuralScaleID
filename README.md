@@ -70,3 +70,5 @@ loads the model saved via ```save_model``` in ```Model``` class
 ### Arguments
 * **name:** String. The name of the saved model
 * **folder:** String. The directory containing the model
+
+## Teacher class (teacher.py)
