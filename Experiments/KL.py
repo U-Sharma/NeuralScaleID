@@ -1,3 +1,10 @@
+"""
+This file loads data from a teacher database folder 'teac600dataBIG_20amb'. The teacher used to generate the database has
+architecture [20,600,600,2]. The database was generated with reduce=1/20 (refer to example.ipynb), i.e. 1.6*10**8 datapoints.
+Make a 'data' directory for the data to be saved.
+Adjust the number of multiprocessing threads according to the capacity of the machine. To run without multiprocessing, run method main_f  rather than main_f_multiP (uncomment main_f, comment out main_f_multiP). main_f takes argument p, which is a tuple (n,r), where n is the width of hidden layers in student (architecture=[20,n,n,2]) and r is the run (Integer. Useful when doing multiple runs. Can be set to any arbitrary positive integer if doing only one run)
+"""
+
 import numpy as np
 import matplotlib.pyplot as plt
 import os
@@ -141,12 +148,3 @@ for run in range(3):
     
     
 #main_f((12,0))
-
-"""
-parser = argparse.ArgumentParser(description='p = (n,r)')
-parser.add_argument("--p", default='(2,1)', help="enter tuple (n,r)")
-args = parser.parse_args()
-p = eval(args.p)
-
-main_f(p)
-"""
