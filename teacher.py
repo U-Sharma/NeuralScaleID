@@ -9,7 +9,8 @@ import sys
 import psutil
 tf.compat.v1.disable_eager_execution()
 
-class Teacher: #even if use_database = True, still supply W,b (for saving parent weights), architecture, scale. database_dir must have a filesize.txt
+class Teacher: #even if use_database = True, architecture and scale. The filename depends upon scale. 
+    
   def __init__(self,architecture=None,scale=None,reduce=1,W=None,b=None,bias_sd=0.00,weights_init='gaussian',softmax=True,database_dir='/dev/tmp',use_database=False,create_database=False):
     
     if (W is None or b is None) and (architecture is None):
@@ -56,7 +57,7 @@ class Teacher: #even if use_database = True, still supply W,b (for saving parent
         print('loading database...            ',end='\r')
         self.create_data_matrix_from_file()
         print('database loaded.                      ')
-    #self.create_data_matrix() #For some reason this routine is much slower (factor of 2-4) comapred to first storing data to file and then fetching it. Weird. Maybe .h5 files are extremely efficient
+    # For some reason self.create_data_matrix() method is much slower (factor of 2-4) comapred to first storing data to file and then fetching it. Maybe .h5 files are extremely efficient
     
   def weight_variable(self, shape, weights_init='gaussian'):
     N = shape[0]
@@ -80,7 +81,7 @@ class Teacher: #even if use_database = True, still supply W,b (for saving parent
     for i in range(len(architecture)-1):
       W = self.weight_variable(shape=[architecture[i],architecture[i+1]],weights_init=weights_init)
       Wcoef.append(W)
-      b = self.bias_variable(shape=[architecture[i+1]],scale=bias_scale,weights_init=weights_init) #we don't use bias_variable() because we want random values for weight rather than constant 0.1
+      b = self.bias_variable(shape=[architecture[i+1]],scale=bias_scale,weights_init=weights_init)
       bcoef.append(b)
     return Wcoef,bcoef
 
@@ -106,7 +107,7 @@ class Teacher: #even if use_database = True, still supply W,b (for saving parent
     batch_size = int(total_lines/repeats)
     self.filesize = batch_size*repeats
     filename = self.filename
-    #initial creation of the data file (if statement is added for multiprocessing)
+    #initial creation of the data file (if statement is added for multiprocessing). To be safe don't have a preexisting file with the same filename in the database folder
     if not os.path.exists(filename):
       ROW_SIZE = self.architecture[0]+self.architecture[-1]
       f = tables.open_file(filename, mode='w')
@@ -128,7 +129,6 @@ class Teacher: #even if use_database = True, still supply W,b (for saving parent
 
 
   def predict_from_file(self,batch_size=1,res=None): #takes in batch_size and returns x_input,y_input from a pre-saved file
-    #f = tables.open_file(self.filename, mode='r')
     with tables.open_file(self.filename, mode='r') as f:
         try:       
             if res is None: res = random.sample(range(self.filesize), batch_size)
@@ -138,7 +138,8 @@ class Teacher: #even if use_database = True, still supply W,b (for saving parent
         else: #return x,y
             return data[:,:self.architecture[0]],data[:,self.architecture[0]:]
     
-  def create_data_matrix_from_file(self): #this function lets one process create a data_file and import the matrix from that file to each process
+  def create_data_matrix_from_file(self): #load data as numpy array from data file (hdf5)
+    #loading is done in chunks of 1/100th the size of the data file since RAM might overflow
     length = self.filesize//100
     self.data_matrix_x = np.zeros(shape=(length*100,self.max_features))
     self.data_matrix_y = np.zeros(shape=(length*100,self.architecture[-1]))
@@ -150,11 +151,6 @@ class Teacher: #even if use_database = True, still supply W,b (for saving parent
         x,y = self.predict_from_file(res=np.arange(i*length,(i+1)*length))
         self.data_matrix_x[i*length:(i+1)*length,:] = x
         self.data_matrix_y[i*length:(i+1)*length,:] = y
-        #if i==0:
-        #    self.data_matrix_x,self.data_matrix_y = x,y
-        #else:           
-        #    self.data_matrix_x = np.concatenate((self.data_matrix_x,x),axis=0)
-        #    self.data_matrix_y = np.concatenate((self.data_matrix_y,y),axis=0)
     
     
   def predict_from_matrix(self,batch_size=1):
@@ -179,7 +175,7 @@ class Teacher: #even if use_database = True, still supply W,b (for saving parent
       y_int = np.maximum(y,0)
     return y_output
 
-  def predict_one_layer(self,x_input,layer=-1,relu=False): #layers can be labelled 1,2,3... starting from 1st hidden or -1,-2,.. starting from prefinal backwards
+  def predict_one_layer(self,x_input,layer=-1,relu=False): #layers can be labelled 1,2,3... starting from 1st hidden or -1,-2,.. starting from prefinal backwards. The reliable way to get final output is to use layer=0.
     architecture=self.architecture
     Wcoef = self.W
     bcoef = self.b
