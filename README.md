@@ -35,3 +35,5 @@ y_test = t.predict(x_test)
 
 test_loss = model.evaluate(x_test,y_test)
 ```
+
+The teacher/student experiments have been done by first generating a database from teacher, and then loading the database in order to train the student (refer example.ipynb). In order to run those experiments, a database needs to be generated. Refer to the individual experiment files for details of database.
