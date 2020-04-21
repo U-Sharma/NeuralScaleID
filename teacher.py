@@ -42,7 +42,7 @@ class Teacher: #even if use_database = True, still supply W,b (for saving parent
         if not os.path.isdir(database_dir): os.mkdir(database_dir)
         self.filename = database_dir+"/"+'data'+str(np.sum(self.scale))+'.h5'
         self.filesize = int(200000*4*10/reduce)
-        self.weights_save_teacher(folder=database_dir,W=self.W,b=self.b)
+        self.save_weights(folder=database_dir,W=self.W,b=self.b)
         print('creating database file...',end='\r')
         self.create_data_file()
         if not os.path.exists(database_dir+'/filesize.txt'): np.savetxt(database_dir+'/filesize.txt',np.array([self.filesize]))
@@ -203,7 +203,7 @@ class Teacher: #even if use_database = True, still supply W,b (for saving parent
     else:
         return self.predict_one_layer(x_input, layer=layer,relu=relu)
 
-  def weights_save_teacher(self,folder,W,b,scale=None,arc=None,fname=None):
+  def save_weights(self,folder,W,b,scale=None,arc=None,fname=None):
     W_new = []
     b_new = []
     for elem in W:
