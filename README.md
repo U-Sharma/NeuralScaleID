@@ -18,3 +18,4 @@ trains the model
 * **lr_scheduler:** Learning rate scheduler. This is a function that takes in epoch and returns a float value for learning rate. The learning rate is updated at each training step and not just at the end of each epoch. If ```learning_rate``` and ```lr_scheduler``` are both specified, ```lr_scheduler``` overrides ```learning_rate```.
 * **verbose:** Integer. 0,1 or 2. 0 = silent, 1 = epoch number, 2 = progress % within an epoch
 * **asymp_steps:** The method returns the training loss for the last ```asymp_steps``` steps of the training session (the last asymp_steps of the last epoch of the training session)
+* **skip:** The method returns training loss at every ```skip``` steps
