@@ -11,5 +11,5 @@ model = NN.Model(architecture=[10,64,64,64,2],loss='KL',softmax=True)
 train(x,y,batch_size=32,epochs=1,learning_rate=0.001,lr_scheduler = None,verbose=2,asymp_steps=1000,skip=100)
 ```
 trains the model
-* **x:** training input of shape [batch size,input dimension]
-* yo
+* **x:** training input, numpy array of shape ```python [batch size,input dimension] ```
+* **y:** training output, numpy array of shape []
