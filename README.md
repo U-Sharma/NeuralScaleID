@@ -94,6 +94,7 @@ returns the predicted value for input ```x_input```
 #### Arguments
 * **x_input:** input, numpy array of shape ```[batch size,input dimension]```. The entire input array is evaluated as one batch. Here ```input dimension``` is the first element of the global variable ```architecture```
 
+### save_weights
 ```python
 save_weights(folder,W=None,b=None)
 ```
