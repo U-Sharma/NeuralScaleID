@@ -1,8 +1,8 @@
 # NeuralScaleID
-## Model class (NeuralNet_Utkarsh.py)
+## Model class (NeuralNet.py)
 you can instantiate a model via:
 ```python
-import NeuralNet_Utkarsh as NN
+import NeuralNet as NN
 model = NN.Model(architecture=[10,64,64,64,2],loss='KL',softmax=True)
 ```
 ## Methods
@@ -61,7 +61,7 @@ saves the model
 * **name:** String. The name under which you want to save the model
 * **location** String. The directory in which you want to save your model.
 
-## Other methods in NeuralNet_Utkarsh.py
+## Other methods in NeuralNet.py
 ### load_model
 ```python
 load_model(name,folder='.')
