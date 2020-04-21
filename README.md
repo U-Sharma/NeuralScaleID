@@ -1,4 +1,5 @@
 # NeuralScaleID
-## NeuralNet_Utkarsh
-### class variables:
+## NeuralNet_Utkarsh.py
+### class Model
+#### class variables:
 architecture: 
