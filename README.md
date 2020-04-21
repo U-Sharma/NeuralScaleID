@@ -13,4 +13,6 @@ train(x,y,batch_size=32,epochs=1,learning_rate=0.001,lr_scheduler = None,verbose
 trains the model
 * **x:** training input, numpy array of shape ```[batch size,input dimension] ```
 * **y:** training output, numpy array of shape ```[batch size,output dimension]```
-* **batch_size:** default value is $32$
+* **batch_size:** Integer. default value is 32
+* **learning_rate:** Adam learning rate. Default is 0.001
+* **lr_scheduler:** Learning rate scheduler. This is a function that takes in epoch and returns a float value for learning rate. The learning rate is updated at each training step and not just at the end of each epoch. If ```learning_rate``` and ```lr_scheduler``` are both specified, ```lr_scheduler``` overrides ```learning_rate```.
