@@ -27,3 +27,12 @@ predict(x)
 generates output predictios for input ```x```
 #### Arguments
 * **x:** input, numpy array of shape ```[batch size,input dimension]```. The entire input array is evaluated as one batch
+
+### predict_layer
+```python
+predict_layer(x,layer=None)
+```
+returns the predicted output of a specified layer for input ```x```
+#### Arguments
+* **x:** input, numpy array of shape ```[batch size,input dimension]```. The entire input array is evaluated as one batch
+* **layer:** Integer.1,2... for 1st,2nd... hidden layer If ```None```, returns a dictionary of all layer outputs. 
