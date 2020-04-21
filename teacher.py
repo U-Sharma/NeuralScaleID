@@ -203,7 +203,9 @@ class Teacher: #even if use_database = True, still supply W,b (for saving parent
     else:
         return self.predict_one_layer(x_input, layer=layer,relu=relu)
 
-  def save_weights(self,folder,W,b,scale=None,arc=None,fname=None):
+  def save_weights(self,folder,W=None,b=None,scale=None,arc=None,fname=None):
+    if W is None: W = self.W
+    if b is None: b = self.b
     W_new = []
     b_new = []
     for elem in W:
