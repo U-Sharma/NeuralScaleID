@@ -1,8 +1,8 @@
 # NeuralScaleID
 ## NeuralNet_Utkarsh.py, class Model
-### class arguments:
-architecture: list
+you can instantiate a model via:
 ```python
-print "hello world"
+import NeuralNet_Utkarsh as NN
+model = NN.Model(architecture=[10,64,64,64,2],loss='KL',softmax=True)
 ```
 
