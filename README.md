@@ -46,3 +46,8 @@ evaluates loss given input ```x``` and output ```y```
 * **x:** input, numpy array of shape ```[batch size,input dimension]```. The entire input array is evaluated as one batch
 * **y:** output, numpy array of shape ```[batch size,output dimension]```
 
+### get_weights
+```python
+get_weights()
+```
+returns ```W``` and ```b``` (weights and biases) as lists of numpy arrays
