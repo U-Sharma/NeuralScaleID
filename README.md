@@ -1,6 +1,6 @@
 # NeuralScaleID
 ## Model class (NeuralNet.py)
-you can instantiate a model via:
+Instantiate a model via:
 ```python
 import NeuralNet as NN
 model = NN.Model(architecture=[10,64,64,64,2],loss='KL',softmax=True)
@@ -72,7 +72,7 @@ loads the model saved via ```save_model``` in ```Model``` class
 * **folder:** String. The directory containing the model
 
 ## Teacher class (teacher.py)
-you can instantiate a teacher via:
+Instantiate a teacher via:
 ```python
 import teacher
 t = teacher.Teacher(architecture=[4,256,256,8],scale=[1,1,0,0])
