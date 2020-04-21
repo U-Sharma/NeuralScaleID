@@ -51,7 +51,6 @@ class NeuralNet:
       y=tf.matmul(y_int,Wcoef[i])+bcoef[i]
       if i==len(architecture)-2:
         if self.softmax:
-            #y = tf.linalg.normalize(y,axis=1)[0]
             y_output=tf.nn.softmax(y)
         else: 
             y_output = y
@@ -82,9 +81,6 @@ class NeuralNet:
         return self.predict_one_layer(x_input, layer=layer)
 
 class Model:
-
-  #Global Variables: 
-  # sess, parent, daughter, x_input, loss, train_step
 
   def __init__(self,architecture,softmax=True,loss='KL',power=2,W=None,b=None):
     self.sess=tf.compat.v1.Session()
@@ -154,15 +150,9 @@ class Model:
     loss_plot=[]
     asymp_loss=[]
     start_time=datetime.datetime.now().time()
-    #x = np.array(x)
-    #y = np.array(y)
     (lx,fx) = x.shape
     (ly,fy) = y.shape
     num_batches = lx//batch_size
-    #x = x[0:num_batches*batch_size]
-    #y = y[0:num_batches*batch_size]
-    #x_batches = np.reshape(x,(num_batches,batch_size,fx))
-    #y_batches = np.reshape(y,(num_batches,batch_size,fy))
     
     for i in range(num_batches):
         x_batch,y_batch = x[batch_size*i:batch_size*(i+1)],y[batch_size*i:batch_size*(i+1)]
@@ -185,15 +175,9 @@ class Model:
     loss_plot=[]
     asymp_loss=[]
     start_time=datetime.datetime.now().time()
-    #x = np.array(x)
-    #y = np.array(y)
     (lx,fx) = x.shape
     (ly,fy) = y.shape
     num_batches = lx//batch_size
-    #x = x[0:num_batches*batch_size]
-    #y = y[0:num_batches*batch_size]
-    #x_batches = np.reshape(x,(num_batches,batch_size,fx))
-    #y_batches = np.reshape(y,(num_batches,batch_size,fy))
     
     for i in range(num_batches):
         x_batch,y_batch = x[batch_size*i:batch_size*(i+1)],y[batch_size*i:batch_size*(i+1)]
@@ -213,7 +197,6 @@ class Model:
 
 
   def train(self,x,y,batch_size=32,epochs=1,learning_rate=0.001,lr_scheduler = None,verbose=2,asymp_steps=1000,skip=100):
-    # decide the most useful way of returning history etc
     self.train_sess_count += 1
     all_hist = {}
     loss_history = []
