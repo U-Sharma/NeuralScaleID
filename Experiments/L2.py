@@ -4,7 +4,7 @@ import os
 import shutil
 import pickle
 import teacher
-import NeuralNet_Utkarsh as student
+import NeuralNet as student
 import argparse
 import multiprocessing
 
