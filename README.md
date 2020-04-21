@@ -35,4 +35,4 @@ predict_layer(x,layer=None)
 returns the predicted output of a specified layer for input ```x```
 #### Arguments
 * **x:** input, numpy array of shape ```[batch size,input dimension]```. The entire input array is evaluated as one batch
-* **layer:** Integer. 1, 2... for 1st, 2nd... hidden layer If ```None```, returns a dictionary of all layer outputs. 
+* **layer:** Integer. 1, 2... for 1st, 2nd... hidden layer, or 0, -1,... for output layer, prefinal layer... etc. If ```None```, returns a dictionary of all layer outputs. 
