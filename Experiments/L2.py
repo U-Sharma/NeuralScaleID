@@ -160,7 +160,8 @@ def main_f_multiP(run):
         pool.map(main_f,pool_list)
         pool.close()
 
-        
+
+#step is the number of itearations we do in one run
 step = 2
 for run in range(5):
     main_f_multiP(run)

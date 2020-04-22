@@ -106,7 +106,11 @@ def main_f(p):
         
         
 def main_f_multiP(run):
-    #breaking down n_list into 2 parts. Reason: even tho this file evaluates only one num_fea, I want to run several num_fea in parallel using gnu parallel. Thus, cpu usage shoots too high if you try too many n's at once. Aim is to try ~9 num_fea values at once, therefore step=1 and 3 values of n would give 27 inputs, or 36 threads with 4 n's. I dont want to exceed those manuy threads on a 96 cpu machine.
+    #breaking down n_list into 2 parts. Reason: even tho this file evaluates only one num_fea, 
+    #we want to run several num_fea in parallel using gnu parallel. 
+    #Thus, cpu usage shoots too high with too many n's at once. 
+    #Aim is to try ~9 num_fea values at once, therefore step=1 and 3 values of n would give 27 inputs, 
+    #or 36 threads with 4 n's. We dont want to exceed those many threads on a 96 cpu machine.
     if f<7: n_i = 8
     if f>6 and f<11: n_i = 12
     if f>10: n_i = 22
@@ -152,7 +156,8 @@ def main_f_multiP(run):
         pool.map(main_f,pool_list)
         pool.close()
 
-        
+
+#step is the number of itearations we do in one run   
 step = 3
 for run in range(5):
     main_f_multiP(run)

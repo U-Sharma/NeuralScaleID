@@ -1,14 +1,25 @@
 """
-This file loads data from a teacher database folder 'teac600dataBIG_20amb'. The database contains files data2.h5,data3.h5 etc generated from teacher with 2,3 etc features respectively. The teacher used to generate the database has
-architecture [20,600,600,2]. The database was generated with reduce=1/20, i.e. 1.6*10**8 datapoints (refer to example.ipynb).
+This file loads data from a teacher database folder 'teac600dataBIG_20amb'. 
+The database contains files data2.h5,data3.h5 etc generated from teacher with 2,3 etc features respectively. 
+The teacher used to generate the database has architecture [20,600,600,2]. 
+The database was generated with reduce=1/20, i.e. 1.6*10**8 datapoints (refer to example.ipynb).
 
 Make a 'data' directory for the data to be saved.
 
-Adjust the number of multiprocessing threads according to the capacity of the machine. To run without multiprocessing, run method main_f  rather than main_f_multiP (uncomment main_f, comment out main_f_multiP). main_f takes argument p, which is a tuple (n,r), where n is the width of hidden layers in student (architecture=[20,n,n,2]) and r is the run (Integer. Useful when doing multiple runs. Can be set to any arbitrary positive integer if doing only one run)
+Adjust the number of multiprocessing threads according to the capacity of the machine. 
+To run without multiprocessing, run method main_f  rather than main_f_multiP (uncomment main_f, comment out main_f_multiP). 
+main_f takes argument p, which is a tuple (n,r), where n is the width of hidden layers in student (architecture=[20,n,n,2]),
+and r is the run (Integer. Useful when doing multiple runs. 
+Can be set to any arbitrary positive integer if doing only one run)
 
-This file takes number of features as input from the command line e.g. python3 KL.py --f=12. In this example the code would load file data12.h5 from folder 'teac600dataBIG_20amb'. 
+This file takes number of features as input from the command line e.g. python3 KL.py --f=12. 
+In this example the code would load file data12.h5 from folder 'teac600dataBIG_20amb'. 
 
-In the above example, a folder 'features12' would be created in 'data', with subfolders 'losses' and 'models'. Trained models are saved in 'models' as model{n}_{r}, where n is the hidden layer width and r is the index of the run, as discussed above. Similarly loss{n}_{r}.pkl files are saved in 'losses'
+In the above example, a folder 'features12' would be created in 'data', with subfolders 'losses' and 'models'. 
+Trained models are saved in 'models' as model{n}_{r}, where n is the hidden layer width and r is the index of the run,
+as discussed above. 
+Similarly, loss{n}_{r}.pkl files are saved in 'losses'
+
 """
 
 import numpy as np
@@ -107,7 +118,11 @@ def main_f(p):
         
         
 def main_f_multiP(run):
-    #breaking down n_list into 2 parts. Reason: even tho this file evaluates only one num_fea, I want to run several num_fea in parallel using gnu parallel. Thus, cpu usage shoots too high if you try too many n's at once. Aim is to try ~9 num_fea values at once, therefore step=1 and 3 values of n would give 27 inputs, or 36 threads with 4 n's. I dont want to exceed those manuy threads on a 96 cpu machine.
+    #breaking down n_list into 2 parts. Reason: even tho this file evaluates only one num_fea, 
+    #we want to run several num_fea in parallel using gnu parallel. 
+    #Thus, cpu usage shoots too high with too many n's at once. 
+    #Aim is to try ~9 num_fea values at once, therefore step=1 and 3 values of n would give 27 inputs, 
+    #or 36 threads with 4 n's. We dont want to exceed those many threads on a 96 cpu machine.
     if f%2==0:
         n_list = [int(22*(1.3)**i) for i in range(0,5)]    
         r_list = np.arange(run*step,(run+1)*step)
@@ -149,7 +164,7 @@ def main_f_multiP(run):
         pool.map(main_f,pool_list)
         pool.close()
 
-        
+#step is the number of itearations we do in one run   
 step = 1
 for run in range(3):
     main_f_multiP(run)

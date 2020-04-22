@@ -122,7 +122,7 @@ def main_f_multiP(run):
     #we want to run several num_fea in parallel using gnu parallel. 
     #Thus, cpu usage shoots too high with too many n's at once. 
     #Aim is to try ~9 num_fea values at once, therefore step=1 and 3 values of n would give 27 inputs, 
-    #or 36 threads with 4 n's. I dont want to exceed those manuy threads on a 96 cpu machine.
+    #or 36 threads with 4 n's. We dont want to exceed those many threads on a 96 cpu machine.
     if f%2==0:
         n_list = [int(22*(1.3)**i) for i in range(0,5)]    
         r_list = np.arange(run*step,(run+1)*step)
@@ -164,7 +164,7 @@ def main_f_multiP(run):
         pool.map(main_f,pool_list)
         pool.close()
 
-#step is the number of itearations we do in one run.     
+#step is the number of itearations we do in one run   
 step = 1
 for run in range(3):
     main_f_multiP(run)
