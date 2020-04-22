@@ -1,5 +1,6 @@
-# Adapted from ID measurement code https://github.com/ansuini/IntrinsicDimDeep
-# and extended for k-NNs, MLE, and the use of sklearn for Nearest Neighbors
+# Loosely adapted from this (https://github.com/ansuini/IntrinsicDimDeep)
+# ID measurement code and extended for k-NNs, MLE, and the use of sklearn
+# for Nearest Neighbors
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.neighbors import NearestNeighbors
