@@ -1,16 +1,25 @@
 """
-This file loads data from a teacher database folder 'teac600dataL2_20amb'. The teacher used to generate the database has
-architecture [20,600,600,1]. The database was generated with softmax=False and reduce=1/20, i.e. 1.6*10**8 datapoints (refer to example.ipynb).
+This file loads data from a teacher database folder 'teac600dataL2_20amb'. 
+The teacher used to generate the database has architecture [20,600,600,1]. 
+The database was generated with softmax=False and reduce=1/20, i.e. 1.6*10**8 datapoints (refer to example.ipynb).
 
 Make a 'data' directory for the data to be saved.
 
-Adjust the number of multiprocessing threads according to the capacity of the machine. To run without multiprocessing, run method main_f  rather than main_f_multiP (uncomment main_f, comment out main_f_multiP). main_f takes argument p, which is a tuple (n,r), where n is the width of hidden layers in student (architecture=[20,n,n,1]) and r is the run (Integer. Useful when doing multiple runs. Can be set to any arbitrary positive integer if doing only one run)
+Adjust the number of multiprocessing threads according to the capacity of the machine. 
+To run without multiprocessing, run method main_f  rather than main_f_multiP (uncomment main_f, comment out main_f_multiP). 
+main_f takes argument p, which is a tuple (n,r), where n is the width of hidden layers in student (architecture=[20,n,n,1]) and
+r is the run (Integer. Useful when doing multiple runs. Can be set to any arbitrary positive integer if doing only one run)
 
 The code loads file data8.h5 (i.e. generated from a teacher with 8 input features) from folder 'teac600dataL2_20amb'. 
 
-This file takes the power of loss (since we consider power law losses) as input from the command line e.g. python3 GeneralizedLoss.py --p=3
+This file takes the power of loss (since we consider power law losses) as input from the command line 
+e.g. python3 GeneralizedLoss.py --p=3
 
-In the above example, a folder 'features8_3' (or 'features8_p' in general, indicating that the teacher has 8 features) would be created in 'data', with subfolders 'losses' and 'models'. Trained models are saved in 'models' as model{n}_{r}, where n is the hidden layer width and r is the index of the run, as discussed above. Similarly loss{n}_{r}.pkl files are saved in 'losses'
+In the above example, a folder 'features8_3' (or 'features8_p' in general, indicating that the teacher has 8 features) 
+would be created in 'data', with subfolders 'losses' and 'models'. 
+Trained models are saved in 'models' as model{n}_{r}, where n is the hidden layer width and r is the index of the run, 
+as discussed above. 
+Similarly loss{n}_{r}.pkl files are saved in 'losses'
 
 """
 
