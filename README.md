@@ -1,5 +1,5 @@
 # NeuralScaleID
-This codebase implements teacher/student training with a variety of network sizes and shapes.  It also tests performance of CNNs on image datasets. The reader is strongly encouraged to refer to the example.ipynb in the codebase.
+This codebase implements teacher/student training with a variety of network sizes and shapes.  It also tests performance of CNNs on image datasets. The reader is strongly encouraged to refer to the example.ipynb in the codebase. More details of the codebase can be found in Documentation.md.
 
 For the sake of organization, the python files for individual experients have been placed together in the folder Experiments. To run an experiment file that imports NeuralNet or teacher, it has to be in the same direntory as those two modules.
 

@@ -24,7 +24,7 @@ trains the model.
 ```python
 predict(x)
 ```
-generates output predictios for input ```x```
+generates output predictions for input ```x```
 #### Arguments
 * **x:** input, numpy array of shape ```[batch size,input dimension]```. The entire input array is evaluated as one batch
 
