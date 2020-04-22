@@ -1,3 +1,9 @@
+# Run this code as python3 CIFAR10.py --iter=0. iter (Integer) is the iteration. 
+# But doing iter=0, iter=1 etc multiple iterations of the experiment can be collected
+# The code makes directory 'data', and subdirectories 'models', 'losses', 'accuracies', 'loss_history' and 'acc_history' 
+# Subdirs contain files with filenames <descriptive>n_r, where n in the parameter in student architecture, and r is the iteration
+# e.g. data/losses/train_loss4_0 etc.
+
 from __future__ import absolute_import, division, print_function, unicode_literals
 
 import tensorflow as tf
@@ -96,7 +102,7 @@ ite=args.iter
 
 pool_list = []
 for n in n_list:
-    step = 2
+    step = 2 #step is the number of iterations in one value of ite
     for i in range(step*ite,step*(ite+1)):
         pool_list.append([n,i])
 
