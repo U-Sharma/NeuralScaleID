@@ -3,6 +3,14 @@ This codebase implements teacher/student training with a variety of network size
 
 For the sake of organization, the python files for individual experients have been placed together in the folder Experiments. To run an experiment file that imports NeuralNet or teacher, it has to be in the same direntory as those two modules.
 
+The organization of files in folder Experiments/ with respect to the paper is:
+* KL.py: Cross-Entropy
+* L2.py: MSE
+* GeneralizedLoss.py: Generalized loss 
+* XxY.py: Product data manifold
+
+The names of image dataset files are self explanatory
+
 Generating a random teacher with 4 inputs and 2 outputs (softmax), and 2 hidden layers of width 128:
 ```python
 import teacher
