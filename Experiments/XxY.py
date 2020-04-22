@@ -1,11 +1,23 @@
 """
-This file loads data from a teacher database folders 'database_X_3','database_Y_3','database_Z_3', each of which contain a file named data3.h5. These correspond to three randomly initialized (but otherwise identical) teachers ('X','Y' and 'Z') with 3 features. The teachers have architecture [9,600,600,1]. The first, middle and last third of the inputs were kept "un-hidden" (i.e. in the 'scale' of the teacher, other elements were set to zero) for teachers X, Y and Z respectively. The database was generated with softmax=False and reduce=1/20, i.e. 1.6*10**8 datapoints (refer to example.ipynb).
+This file loads data from a teacher database folders 'database_X_3','database_Y_3','database_Z_3', 
+each of which contain a file named data3.h5. 
+These correspond to three randomly initialized (but otherwise identical) teachers ('X','Y' and 'Z') with 3 features. 
+The teachers have architecture [9,600,600,1]. 
+The first, middle and last third of the inputs were kept "un-hidden" (i.e. in the 'scale' of the teacher, 
+other elements were set to zero) for teachers X, Y and Z respectively. 
+The database was generated with softmax=False and reduce=1/20, i.e. 1.6*10**8 datapoints (refer to example.ipynb).
 
 Make a 'data' directory for the data to be saved.
 
-Adjust the number of multiprocessing threads according to the capacity of the machine. To run without multiprocessing, run method main_f  rather than main_f_multiP (uncomment main_f, comment out main_f_multiP). main_f takes argument p, which is a tuple (n,r), where n is the width of hidden layers in student (architecture=[9,n,n,1]) and r is the run (Integer. Useful when doing multiple runs. Can be set to any arbitrary positive integer if doing only one run)
+Adjust the number of multiprocessing threads according to the capacity of the machine. 
+To run without multiprocessing, run method main_f  rather than main_f_multiP (uncomment main_f, comment out main_f_multiP). 
+main_f takes argument p, which is a tuple (n,r), where n is the width of hidden layers in student (architecture=[9,n,n,1]) and 
+r is the run (Integer. Useful when doing multiple runs. Can be set to any arbitrary positive integer if doing only one run)
 
-This code creates a folder 'features3plus3plus3' in 'data', with subfolders 'losses' and 'models'. Trained models are saved in 'models' as model{n}_{r}, where n is the hidden layer width and r is the index of the run, as discussed above. Similarly loss{n}_{r}.pkl files are saved in 'losses'
+This code creates a folder 'features3plus3plus3' in 'data', with subfolders 'losses' and 'models'. 
+Trained models are saved in 'models' as model{n}_{r}, where n is the hidden layer width and r is the index of the run, 
+as discussed above. 
+Similarly loss{n}_{r}.pkl files are saved in 'losses'
 
 """
 
