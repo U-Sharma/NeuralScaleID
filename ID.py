@@ -35,9 +35,8 @@ def measure_dimension_kNN(
         y = -np.log(1 - Femp[:-2] ** (1 / (k + 1)))
         ys += [y]
 
-        # regression
         npoints = int(np.floor(N * fraction))
-        regr = linear_model.LinearRegression(fit_intercept=True)
+        regr = linear_model.LinearRegression(fit_intercept=False)
         regr.fit(x[:npoints, np.newaxis], y[:npoints, np.newaxis])
         if verbose:
             print(
