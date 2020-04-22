@@ -43,7 +43,8 @@ def run(l,epochs=50):
                   loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
                   metrics=['accuracy'])
         
-    #history = model.fit(train_images, train_labels, epochs=epochs,callbacks=[callback], validation_data=(test_images, test_labels),verbose=0)
+    #Note that we're not using the scheduler defined above. The scheduler has been left in the code in case the reader
+    #wishes to use it.
     history = model.fit(train_images, train_labels, epochs=epochs, validation_data=(test_images, test_labels),verbose=0)
     
     test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
@@ -98,6 +99,3 @@ l = pool.map(run,pool_list)
 pool.close()
 
 
-
-
-#np.savetxt(fol+'/N',l)
