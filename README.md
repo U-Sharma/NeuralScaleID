@@ -5,7 +5,7 @@ For the sake of organization, the python files for individual experients have be
 
 The organization of files in folder Experiments/ with respect to the paper is:
 * KL.py: Cross-Entropy
-* L2.py: MSE
+* L2.py: Mean Squared Error
 * GeneralizedLoss.py: Generalized loss 
 * XxY.py: Product data manifold
 
