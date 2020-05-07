@@ -13,7 +13,7 @@ def get_ratios(vectors, n_neighbors):
     distances, indices = nbrs.kneighbors(vectors)
     ratios = np.array(
         [distances[:, i] / distances[:, 1] for i in range(2, n_neighbors)]
-    ).T
+    )
     return ratios, N
 
 
@@ -25,7 +25,7 @@ def measure_dimension_kNN(
         np.sort(ratios[i], axis=None, kind="quicksort") for i in range(n_neighbors - 2)
     ]
     Femp = (np.arange(1, N + 1, dtype=np.float64)) / N
-
+    
     dims = []
     xs = []
     ys = []
