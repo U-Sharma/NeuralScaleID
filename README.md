@@ -1,5 +1,4 @@
 # NeuralScaleID
-This codebase accompanies the article	[arXiv:2004.10802](https://arxiv.org/abs/2004.10802).
 
 We implement teacher/student training with a variety of network sizes and shapes.  We also test performance of CNNs on image datasets. The reader is strongly encouraged to refer to the example.ipynb in the codebase. More details of the codebase can be found in Documentation.md.
 
